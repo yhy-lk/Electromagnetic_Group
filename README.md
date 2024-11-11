@@ -1,0 +1,2 @@
+# Electromagnetic_Group
+2024年湖南科技大学信达杯电磁组
