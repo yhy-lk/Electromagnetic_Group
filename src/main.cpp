@@ -20,7 +20,7 @@ void setup() {
 void loop() {
 
 //--------------------------------------------------------------------------------------------
-    // control
+// control
     // Serial.print("TargetVel = ");
     // Serial.print(Vel);
     // Serial.println(" m/s");
@@ -52,7 +52,7 @@ void loop() {
     // Serial.println(control.getPIDKd());
 
 //--------------------------------------------------------------------------------------------
-    // MPU6050
+// MPU6050
     // Serial.print("Yaw = ");
     // Serial.print(IMU.getYaw());
     // Serial.print(" degree, ");
@@ -65,19 +65,21 @@ void loop() {
 
 
 //--------------------------------------------------------------------------------------------
-    // Ultrasound
-    Serial.print("distance: ");
-    Serial.print(ultrasound.getDistance());
-    Serial.println(" mm");
+// Ultrasound
+    // Serial.print("distance: ");
+    // Serial.print(ultrasound.getDistance());
+    // Serial.println(" mm");
 
-    byte* buf = ultrasound.getBuf();
-    for(int i = 0; i < 4; ++i) {
-        Serial.print(*(buf++));
-        Serial.print(" ");
-    }
-    Serial.println();
+    // const byte* buf = ultrasound.getBuf();
+    // for(int i = 0; i < 4; ++i) {
+    //     Serial.print(*(buf++));
+    //     Serial.print(" ");
+    // }
+    // Serial.println();
+
+    
 //--------------------------------------------------------------------------------------------
-    // 500ms打印一次
+// 500ms打印一次
     vTaskDelay(pdMS_TO_TICKS(500));
 }
 

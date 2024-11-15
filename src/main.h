@@ -51,7 +51,7 @@ void TaskControl(void *pvParameters) {
 
     for(;;) {
         if (xSemaphoreTake(xSemaphoreVel, (TickType_t) 1) == pdTRUE) {
-            // control.setTargetVel(Vel, Vel);
+            control.setTargetVel(Vel, Vel);
             xSemaphoreGive( xSemaphoreVel );
         }
         vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(20));
