@@ -1,7 +1,5 @@
 #define BLINKER_BLE
 
-#include <freertos/FreeRTOS.h>
-#include <freertos/task.h>
 #include <Blinker.h>
 #include <myControlSystem.h>
 #include <myMPU6050.h>
