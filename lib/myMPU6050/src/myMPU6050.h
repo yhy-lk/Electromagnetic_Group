@@ -1,26 +1,19 @@
-#define 她喜欢的人 我
-
 #include <Arduino.h>
 #include <Adafruit_MPU6050.h>
 #include <Adafruit_Sensor.h>
-#include <Wire.h>
 #include <MadgwickAHRS.h>
 
-class MyMPU6050 {
+class myMPU6050 {
 public:
     // 默认构造函数
-    MyMPU6050() {}
+    myMPU6050();
+    myMPU6050(int sda, int scl, float frequency);
 
-    // IMU初始化,IIC通讯协议，填入你的IIC地址
-    bool mpuInit();
+    bool Init();
 
     void begin(float frequency);
 
-    // 得到静止状态下的测量的100个误差值
-    void getDataErrorSum();
-
-    // 将100个误差值取均值
-    void getDataError();
+    void getOffset();
 
     // 得到滤波之后的准确数值
     void dataGetAndFilter();
@@ -38,20 +31,21 @@ public:
     double getRoll() const;
 
     // 析构函数
-    ~MyMPU6050() {}
+    ~myMPU6050();
+private:
+
     void updataMyYaw();
     double GetMyYaw();
     void calculateDisplacement();
-private:
-
+    int sda, scl;
     sensors_event_t a, g, temp;
     double ax, ay, az, gx, gy, gz, temperature;
     double MyYaw;
     double vx, vy, vz, sx, sy, sz;
     double YawErrorK;
-    float frequency = 0.01;
+    float frequency = 100.0f;
     double MPU6050ERROR[6] = {0.0};
-    double Yaw = 0.0f, Pitch = 0.0f, Roll = 0.0f;                     // 偏航角，俯仰角，翻滚角
+    double Yaw = 0.0, Pitch = 0.0, Roll = 0.0;                     // 偏航角，俯仰角，翻滚角
     
     Adafruit_MPU6050 mpu;
     Madgwick filter;

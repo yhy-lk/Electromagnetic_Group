@@ -66,16 +66,16 @@ myControlSystem::myControlSystem(uint16_t leftEncoderPin, uint16_t rightEncoderP
                         leftCurrVel = myOdometer::getLeftWheelVelocity(); leftOutput = 0.0f; leftTargetVel = 0.0f;
                         leftKp = Kp; leftKi = Ki; leftKd = Kd;
                         leftPID.SetMode(AUTOMATIC);
-                        leftPID.SetTunings(leftKp, leftKi, leftKd);
                         leftPID.SetOutputLimits(-255.0f, 255.0f);
                         leftPID.SetSampleTime(frequency);
+                        leftPID.SetTunings(leftKp, leftKi, leftKd);
 
                         rightCurrVel = myOdometer::getRightWheelVelocity(); rightOutput = 0.0f; rightTargetVel = 0.0f;
                         rightKp = Kp; rightKi = Ki; rightKd = Kd;
                         rightPID.SetMode(AUTOMATIC);
-                        rightPID.SetTunings(rightKp, rightKi, rightKd);
                         rightPID.SetOutputLimits(-255.0f, 255.0f);
                         rightPID.SetSampleTime(frequency);
+                        rightPID.SetTunings(rightKp, rightKi, rightKd);
 
                     }
 
@@ -103,12 +103,16 @@ void myControlSystem::setTargetVel(float leftVel, float rightVel) {
     myOdometer::update();
     leftTargetVel = leftVel;
     leftCurrVel = myOdometer::getLeftWheelVelocity();
+
     rightTargetVel = rightVel;
     rightCurrVel = myOdometer::getRightWheelVelocity();
+
     leftPID.Compute();
     rightPID.Compute();
+
     leftPWM = min(255, max(0, leftPWM + (int16_t)(leftOutput) * sign(leftTargetVel)));
     rightPWM = min(255, max(0, rightPWM + (int16_t)(rightOutput) * sign(rightTargetVel)));
+
     DiffControl::userDefined(leftTargetVel > 0, leftPWM, rightTargetVel < 0, rightPWM);
 }
 

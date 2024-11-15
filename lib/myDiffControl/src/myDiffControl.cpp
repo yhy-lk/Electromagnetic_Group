@@ -8,8 +8,8 @@ bool DiffControl::Init() {
     pinMode(RC, OUTPUT);
     pinMode(LBPAKE, OUTPUT);
     pinMode(RBPAKE, OUTPUT);
-    ledcSetup(0, 30000, 8);
-    ledcSetup(1, 30000, 8);
+    ledcSetup(0, 1000, 8);
+    ledcSetup(1, 1000, 8);
     ledcAttachPin(LP, 0);
     ledcAttachPin(RP, 1);
     ledcWrite(0, 255);
