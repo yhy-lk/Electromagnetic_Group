@@ -82,7 +82,7 @@ bool Adafruit_MPU6050::begin(uint8_t i2c_address, TwoWire *wire,
     mpu_found = i2c_dev->begin();
     if (mpu_found)
       break;
-    delay(10);
+    vTaskDelay(pdMS_TO_TICKS(10));
   }
   if (!mpu_found)
     return false;
@@ -123,7 +123,7 @@ bool Adafruit_MPU6050::_init(int32_t sensor_id) {
 
   power_mgmt_1.write(0x01); // set clock config to PLL with Gyro X reference
 
-  delay(100);
+  vTaskDelay(pdMS_TO_TICKS(100));
 
   // remove old reference
   if (temp_sensor)
@@ -156,13 +156,13 @@ void Adafruit_MPU6050::reset(void) {
   // see register map page 41
   device_reset.write(1);             // reset
   while (device_reset.read() == 1) { // check for the post reset value
-    delay(1);
+  vTaskDelay(pdMS_TO_TICKS(1));
   }
-  delay(100);
+  vTaskDelay(pdMS_TO_TICKS(100));
 
   sig_path_reset.write(0x7);
 
-  delay(100);
+  vTaskDelay(pdMS_TO_TICKS(100));
 }
 
 /**************************************************************************/

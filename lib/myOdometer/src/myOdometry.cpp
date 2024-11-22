@@ -90,11 +90,11 @@ void myOdometer::resetVelocity() {
 }
 
 float myOdometer::getLeftWheelVelocity() const {
-    return (float)leftWheelVelocity;
+    return leftWheelVelocity;
 }
 
 float myOdometer::getRightWheelVelocity() const {
-    return (float)rightWheelVelocity;
+    return rightWheelVelocity;
 }
 
 

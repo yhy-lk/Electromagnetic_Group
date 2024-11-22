@@ -7,7 +7,7 @@
 
 myUltrasound ultrasound =  myUltrasound(115200, 11, 12);
 myMPU6050 IMU = myMPU6050(42, 45, 100.0f);
-myControlSystem control = myControlSystem(14, 38, 12, 0.2, 40, 0.3, 35, 36, 39, 40, 13, 41, 3, 0.3, 0.2, 100);
+myControlSystem control = myControlSystem(15, 16, 12, 0.2, 40, 0.3, 35, 5, 39, 4, 13, 41, 3, 0.3, 0.2, 100.0f);
 // myOdometer odometer = myOdometer(0, 38, 35, 39, 12, 0.5, 40, 0.5);
 
 #define velSlider "velSlider1"
